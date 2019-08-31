@@ -1,0 +1,33 @@
+import mtcnn
+from PIL import Image
+import numpy as np
+import os
+from matplotlib import pyplot
+from numpy import savez_compressed
+from numpy import asarray
+from mtcnn.mtcnn import MTCNN
+from mtcnn.mtcnn import MTCNN
+import cv2
+
+detector = MTCNN()
+cap = cv2.VideoCapture(0)
+c=0
+while True:
+	ret, frame = cap.read()
+	
+	result = detector.detect_faces(frame)
+	
+	try:
+			x1, y1, width, height = result[0]['box']
+			x1, y1 = abs(x1), abs(y1)
+			x2, y2 = x1 + width, y1 + height
+			# face = frame[y1:y2, x1:x2]
+			cv2.rectangle(frame, (x1,y1), (x2,y2), (255,0,0), 1)
+			cv2.imshow('image', frame)
+			print('done', vids[i], c)
+			c+=1
+	except:
+			print('passed')
+			pass
+	if cv2.waitKey(1) & 0xFF==ord('q'):
+		break 
