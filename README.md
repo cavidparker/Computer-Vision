@@ -6,3 +6,4 @@
  - Four-rectangle Features:
 ## Integral Image:
 ## Training Classifier:
+## Face and Eye Detection :
